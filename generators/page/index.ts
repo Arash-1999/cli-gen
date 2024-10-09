@@ -78,8 +78,7 @@ const pageGenerator: PlopGeneratorConfig = {
     },
     {
       type: "addMany",
-      // FIX: base path doesn't work
-      base: "/page/templates/module",
+      base: "generators/page/templates/module",
       destination: "src/pages/{{path}}",
       templateFiles: "generators/page/templates/module/**",
       stripExtensions: ["hbs"],

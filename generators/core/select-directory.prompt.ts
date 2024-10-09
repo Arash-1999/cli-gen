@@ -38,10 +38,10 @@ const directorySelect = createPrompt<string, IConfig>((config, done) => {
     rl.clearLine(0);
     if (isEnterKey(key)) {
       let result = "";
-      if (items[active] !== "") {
-        result = `${path}/${items[active]}`;
-      } else {
+      if (items[active] === "" || !items[active]) {
         result = path;
+      } else {
+        result = `${path}/${items[active]}`;
       }
       if (config.validate) {
         if (config.validate(result)) {
