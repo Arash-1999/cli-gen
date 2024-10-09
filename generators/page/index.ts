@@ -1,5 +1,5 @@
 import type { PlopGeneratorConfig } from "plop";
-import { config, layoutConfig, TLayout } from "../config";
+import { config, layoutChoices, layoutConfig, TLayout } from "../config";
 
 const pageGenerator: PlopGeneratorConfig = {
   description: "Create Empty Page",
@@ -18,12 +18,7 @@ const pageGenerator: PlopGeneratorConfig = {
       type: "list",
       name: "type",
       message: "Choose Page Layout",
-      choices: [
-        { name: "Without Layout", value: TLayout.None },
-        { name: "Normal Layout", value: TLayout.Normal },
-        { name: "Dashboard Layout", value: TLayout.Dashboard },
-        { name: "FAQ Layout", value: TLayout.Faq },
-      ],
+      choices: layoutChoices,
     });
 
     const layoutOptions = layoutConfig[result.layout.type];
