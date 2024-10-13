@@ -2,9 +2,13 @@ import { PlopGeneratorConfig } from "plop";
 import { directorySelect } from "../core";
 import { readdirSync } from "fs";
 
+interface IServicePrompts {
+	name: string;
+	path: string;
+}
 const serviceGenerator: PlopGeneratorConfig = {
 	description: "create service",
-	prompts: async (inquirer) => {
+	prompts: async (inquirer): Promise<IServicePrompts> => {
 		const result = { path: "", name: "" };
 
 		const path = await directorySelect({
@@ -29,7 +33,6 @@ const serviceGenerator: PlopGeneratorConfig = {
 			result.name = name.name;
 		}
 
-		console.log(result);
 		return Promise.resolve(result);
 	},
 	actions: [
@@ -37,9 +40,13 @@ const serviceGenerator: PlopGeneratorConfig = {
 			type: "addMany",
 			// TODO: create templates for service and implement addMany action to copy them
 			base: "generators/service/templates/module",
-			destination: "{{ path }}",
+			destination: "{{ path }}/services",
 			templateFiles: "generators/service/templates/module/**",
 			stripExtensions: ["hbs"],
+			skip: (data: IServicePrompts) => {
+				console.log(data.name);
+				return true;
+			},
 		},
 	],
 };
