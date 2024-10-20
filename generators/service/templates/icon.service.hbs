@@ -1,0 +1,16 @@
+import { FC, SVGProps } from 'react';
+
+// TODO: add vector.svg symbol ids here
+type THref = '';
+
+const Icon{{ pascalCase name }}: FC<{ href: THref} & SVGProps<SVGSVGElement>> = props => {
+	const { href, resolvedProps } = props;
+	return (
+		<svg xmlns='http://www.w3.org/2000/svg' fill='none' {...resolvedProps}>
+			<use href={`/imgs/{{ imagesPath }}/{{ dashCase name }}.vector.svg#${href}`} />
+		</svg>
+	);
+};
+
+export default Icon{{ pascalCase name }};
+
